@@ -73,7 +73,7 @@ const Projects = () => {
               <li className="text-gray-600">{projects[currentSlide].desc2}</li>
               {projects[currentSlide].desc3 && <li className="text-gray-600">{projects[currentSlide].desc3}</li>}
             </ul>
-              <a className="flex items-baseline mt-3 text-fromColor hover:text-fromColor focus:text-fromColor" href={projects[currentSlide].link} target="_blank">
+              <a className="flex items-baseline mt-3 text-fromColor hover:text-fromColor focus:text-fromColor" href={projects[currentSlide].link} target="_blank" rel="noreferrer">
                 <span>Github</span>
                 <span className="text-xs ml-1">&#x279c;</span>
               </a>
