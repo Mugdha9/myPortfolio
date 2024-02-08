@@ -12,9 +12,8 @@ module.exports = {
         bgColor: '#f9f9f9',
       },
       colors: {
-        fromColor: '#9f3f3f',
-        toColor: '#b86e6e',
-        cardColor: '#6e625d'
+        fromColor: '#524565',
+        toColor: '#8E7EA6',
       }
     },
   },

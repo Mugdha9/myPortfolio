@@ -6,6 +6,7 @@ import Skills from './components/Skills.jsx';
 import Contact from './components/Contact.jsx';
 import Projects from './components/Projects.jsx';
 import WorkExperience from './components/WorkExperience.jsx';
+import Footer from './components/Footer.jsx';
 
 
 function App() {
@@ -16,12 +17,10 @@ function App() {
       <Socials/>
       <WorkExperience/>
       <Education/>
-      <br/><br/><br/>
-      <br/><br/><br/>
       <Projects/>
-      <br/><br/>
       <Skills/>
       <Contact/>
+      <Footer/>
     </div>
     
   );

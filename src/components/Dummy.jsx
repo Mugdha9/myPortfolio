@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import java from '../assets/java.svg';
 import python from '../assets/python.svg';
 import javascript from '../assets/javascript.png';
@@ -14,12 +14,9 @@ import springboot from '../assets/springboot.svg';
 import django from '../assets/django.svg';
 import github from '../assets/github.svg';
 import aws from '../assets/aws.svg';
-import node from '../assets/node.png';
-import mongo from '../assets/mongodb-icon.svg';
-import hadoop from '../assets/apache_hadoop-icon.svg';
-import spark from '../assets/apache_spark-ar21.svg';
 
-const Skills = () => {
+const Dummy = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     const techs = [
         {
@@ -111,40 +108,16 @@ const Skills = () => {
             id: 15,
             src: aws,
             title: "AWS",
-            style: "shadow-yellow-500"
-        },
-        {
-            id: 16,
-            src: node,
-            title: "Node",
-            style: "shadow-green-200"
-        },
-        {
-            id: 17,
-            src: hadoop,
-            title: "Hadoop",
-            style: "shadow-blue-500"
-        },
-        {
-            id: 18,
-            src: mongo,
-            title: "Mongo DB",
-            style: "shadow-green-500"
-        },
-        {
-            id: 19,
-            src: spark,
-            title: "Apache Spark",
             style: "shadow-orange-500"
         },
         
     ] 
   return (
     <div>
-        <div name="skills" className="mx-auto p-16 sm:p-24 lg:p-48 bg-bgColor w-full min-h-[content-height] h-auto">
-        <div className="max-w-screen-lg mx-auto">
-                <p className="text-4xl font-bold border-b-4 border-gray-500 p-2 inline text-text_color">Skills</p>
-                <p className="py-6 text-text_color">These are the technologies I mainly work with</p>
+        <div name="" className="m-10 mx-auto p-16 sm:p-24 lg:p-48 bg-gray-100 w-full md:h-screen">
+        <div className="max-w-screen-lg mx-auto mt--2">
+                <p className="text-4xl font-bold border-b-4 border-gray-500 p-2 inline">Skills</p>
+                <p className="py-6">These are the technologies I mainly work with</p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center mt-5">
                     {techs.map(({ id, src, title, style }) => (
@@ -160,4 +133,4 @@ const Skills = () => {
   );
 }
 
-export default Skills;
+export default Dummy;

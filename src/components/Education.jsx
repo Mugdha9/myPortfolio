@@ -4,10 +4,11 @@ import sppu from '../assets/sppu.jpg';
 
 const Education = () => {
   return (
-    <div name="education" className="text-text_color w-full md:h-screen bg-bgColor mb-20">
-      <div className="max-w-screen-lg p-4 mx-auto flex flex-col w-full h-full">
+    <div name="education" className="mt-0 mx-auto p-16 sm:p-24 lg:p-48 bg-bgColor w-full">
+      <div className="max-w-screen-lg p-4 mx-auto flex flex-col w-full h-auto">
         <div className="pb-8">
-          <p className="text-4xl font-bold inline border-b-4 mb-4 mt-8 border-gray-500">Education</p>
+          <p className="text-4xl font-bold inline border-b-4 mb-4 mt-8 border-gray-500 text-text_color">Education</p>
+          <p className="py-6 text-text_color">My Academics</p>
         </div>
 
         <div className="flex flex-col md:flex-row mb-8 mt-5">
@@ -31,7 +32,7 @@ const Education = () => {
           </div>
         </div>
 
-        <div className="flex flex-col-reverse md:flex-row-reverse mb-5 mt-5">
+        <div className="flex flex-col-reverse md:flex-row-reverse mt-5">
           <div className="md:w-1/2">
             <img src={sppu} alt="" className="rounded-md mb-4 md:ml-6 w-full md:w-80 h-80" />
           </div>

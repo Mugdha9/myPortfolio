@@ -1,9 +1,11 @@
-import React from 'react';
-import Slider from 'react-slick';
+import React,{useState} from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const WorkExperience = () => {
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const workExperiences = [
     {
       id: 1,
@@ -30,35 +32,61 @@ const WorkExperience = () => {
     },
   ];
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+  const handleNext = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % workExperiences.length);
+  };
+
+  const handlePrev = () => {
+      setCurrentSlide((prevSlide) => (prevSlide - 1 + workExperiences.length) % workExperiences.length);
   };
 
   return (
-    <div name="experience" className="bg-bgColor py-16 text-text_color">
-      <div className="container mx-auto max-w-screen-lg p-4 flex flex-col w-full h-full">
-      <div className="pb-8">
-                    <p className="text-4xl font-bold inline border-b-4 border-gray-500 mt-10">Work Experience</p>
-                    <p className="py-6">Check out some of my work right here</p>
-      </div>
-        <Slider {...sliderSettings} className="max-w-4xl mx-auto">
-          {workExperiences.map((experience) => (
-            <div key={experience.id} className="bg-bgColor rounded-lg p-8 shadow-md">
-              <h3 className="text-xl font-semibold mb-2">{experience.title}</h3>
-              <p className="text-gray-600 mb-2">{experience.company}</p>
-              <p className="text-gray-800">{experience.description1}</p>
-              <p className="text-gray-800">{experience.description2}</p>
-              <p className="text-gray-800">{experience.description3}</p>
+    <div>
+      <div name="experience" className="m-10 mx-auto p-16 sm:p-24 lg:p-48 bg-gray-100">
+      <p className="text-4xl font-bold border-b-4 border-gray-500 p-2 inline text-text_color">Work Experience</p>
+        <p className="py-6 text-text_color">My Corporate Journey</p>
+        <div className="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl" style={{ minHeight: '25rem' }}>
+          <div key={workExperiences[currentSlide].id} className="relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '26rem' }}>
+            <div className="absolute inset-0 w-full h-full bg-fromColor opacity-75"></div>
+            <div className="absolute inset-0 w-full h-full flex items-center justify-center fill-current text-white text-3xl">
+            <div>
+                <p className="text-white text-2xl font-semibold">{workExperiences[currentSlide].title}</p>
+                <p className="text-white text-lg">{workExperiences[currentSlide].company}</p>
+              </div>
             </div>
-          ))}
-        </Slider>
+          </div>
+          <div className="w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg">
+            <div className="p-12 md:pr-24 md:pl-16 md:py-12">
+              <ul className="list-disc">
+              <li className="text-gray-600 text-lg">{workExperiences[currentSlide].description1}</li>
+              <li className="text-gray-600 text-lg">{workExperiences[currentSlide].description2}</li>
+              {workExperiences[currentSlide].description3 && <li className="text-gray-600 text-lg">{workExperiences[currentSlide].description3}</li>}
+              </ul>
+            </div>
+            <svg className="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-gray-100 -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polygon points="50,0 100,0 50,100 0,100" />
+            </svg>
+          </div>
+
+          <button
+            onClick={handlePrev}
+            className="absolute top-0 mt-32 left-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-fromColor hover:text-toColor focus:text-toColor -ml-6 focus:outline-none focus:shadow-outline"
+          >
+            <span className="block" style={{ transform: 'scale(-1)' }}>
+              &#x279c;
+            </span>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute top-0 mt-32 right-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-fromColor hover:text-toColor focus:text-toColor -mr-6 focus:outline-none focus:shadow-outline"
+          >
+            <span className="block">&#x279c;</span>
+          </button>
+        </div>
       </div>
     </div>
   );
 };
+
 
 export default WorkExperience;

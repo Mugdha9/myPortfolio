@@ -1,16 +1,7 @@
-import React from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React,{ useState } from 'react';
 
 const Projects = () => {
-    const settings =  {
-        dots: true,
-        infinite: true,
-        speed: 100,
-        slidesToShow: 1, // Show three cards at once
-        slidesToScroll: 1
-    };
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     const projects = [
         {
@@ -55,41 +46,59 @@ const Projects = () => {
         },
     ];
 
-    const handleKnowMore = (link) => {
-        window.open(link, '_blank');
-      };
-
-    return (
-        <div name="projects" className="bg-bgColor py-16 text-text_color">
-            <div className="container mx-auto max-w-screen-lg p-4 flex flex-col w-full h-full">
-                <div className="pb-8">
-                    <p className="text-4xl font-bold inline border-b-4 border-gray-500 mt-10">Projects</p>
-                    <p className="py-6">Check out some of my work right here</p>
-                </div>
-
-                <div className="mt-1">
-                    <Slider {...settings} className="max-w-4xl mx-auto">
-                        {projects.map(({ id,name,link,desc1,desc2,desc3,desc4 }) => (
-                            <div key={id} className="bg-bgColor rounded-lg p-8 shadow-md">
-                                <div className="bg-bgColor h-[300px] md:h-[450px] text-black rounded-xl">
-                                    <div className="flex flex-col items-center gap-4 p-4">
-                                        <p className="text-xl font-semibold text-center mt-5 mb-8">{name}</p>
-                                        {desc1?.trim() && <p className="text-gray-800">{desc1}</p>}
-                                        <p className="text-gray-800">{desc2}</p>
-                                        <p className="text-gray-800">{desc3}</p>
-                                        {desc4?.trim() && <p className="text-gray-800">{desc4}</p>}
-                                        <div className="flex justify-center">
-                                            <button className="bg-gradient-to-r from-fromColor to-toColor text-white text-lg px-6 py-1 rounded-xl text-center" onClick={() => handleKnowMore(link)}>Know more</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </Slider>
-                </div>
+    const handleNext = () => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % projects.length);
+    };
+    
+    const handlePrev = () => {
+        setCurrentSlide((prevSlide) => (prevSlide - 1 + projects.length) % projects.length);
+    };
+    
+  return (
+    <div>
+      <div name="projects" className="m-10 mx-auto p-16 sm:p-24 lg:p-48 bg-gray-100">
+        <p className="text-4xl font-bold border-b-4 border-gray-500 p-2 inline text-text_color">Projects</p>
+        <p className="py-6 text-text_color">Check out my work here</p>
+        <div className="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl" style={{ minHeight: '22rem' }}>
+          <div key={projects[currentSlide].id} className="relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '22rem' }}>
+            <div className="absolute inset-0 w-full h-full bg-fromColor opacity-75"></div>
+            <div className="absolute inset-0 w-full h-full flex items-center justify-center fill-current text-white text-3xl">
+            {projects[currentSlide].name}
             </div>
+          </div>
+          <div className="w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg">
+            <div className="p-12 md:pr-24 md:pl-16 md:py-12">
+            <ul className = "list-disc">
+              <li className="text-gray-600">{projects[currentSlide].desc1}</li>
+              <li className="text-gray-600">{projects[currentSlide].desc2}</li>
+              {projects[currentSlide].desc3 && <li className="text-gray-600">{projects[currentSlide].desc3}</li>}
+            </ul>
+              <a className="flex items-baseline mt-3 text-fromColor hover:text-fromColor focus:text-fromColor" href={projects[currentSlide].link} target="_blank">
+                <span>Github</span>
+                <span className="text-xs ml-1">&#x279c;</span>
+              </a>
+            </div>
+            <svg className="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-gray-100 -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polygon points="50,0 100,0 50,100 0,100" />
+            </svg>
+          </div>
+
+          <button
+            onClick={handlePrev}
+            className="absolute top-0 mt-32 left-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-fromColor hover:text-toColor focus:text-toColor -ml-6 focus:outline-none focus:shadow-outline">
+            <span className="block" style={{ transform: 'scale(-1)' }}>
+              &#x279c;
+            </span>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute top-0 mt-32 right-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-fromColor hover:text-toColor focus:text-toColor -mr-6 focus:outline-none focus:shadow-outline">
+            <span className="block">&#x279c;</span>
+          </button>
         </div>
-    );
-};
+      </div>
+    </div>
+  );
+}
 
 export default Projects;
