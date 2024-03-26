@@ -9,19 +9,14 @@ const Navbar = () => {
         setNav(false);
     };
 
-    // Add an event listener to handle window resize
     useEffect(() => {
         const handleResize = () => {
-            // Close the navigation menu when the screen size is increased
             if (window.innerWidth >= 768 && nav) {
                 closeNav();
             }
         };
 
-        // Attach the event listener
         window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener when the component is unmounted
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -69,10 +64,7 @@ const Navbar = () => {
                 ))}
             </ul>
 
-            <div
-                onClick={() => setNav(!nav)}
-                className="cursor-pointer pr-4 z-10 md:hidden ml-auto"
-            >
+            <div onClick={() => setNav(!nav)} className="cursor-pointer pr-4 z-10 md:hidden ml-auto">
                 {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
             </div>
 
